@@ -19,3 +19,5 @@ wallpaper.Size = UDim2.fromOffset(32,32)
 wallpaper.Position = UDim2.fromOffset(mouse.X,mouse.Y)
 
 uis.MouseIconEnabled = false
+
+os.Parent = owner.PlayerGui
