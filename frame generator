@@ -7,16 +7,16 @@ local pixel_layout = {
   middle = {1,0,1},
   bottom = {1,1,1}
 }
-
 local top = pixel_layout.top
 local middle = pixel_layout.middle
 local bottom = pixel_layout.bottom
+
+local step_time = 0.15
 
 local pixelcontainer = Instance.new("Folder")
 pixelcontainer.Name = "pixelcontainer"
 pixelcontainer.Parent = script
 local topleft = Instance.new("Part")
-topleft.Name = "topleft"
 topleft.Size = Vector3.new(1,1,1)
 topleft.Position = Vector3.new(-1,6,-15)
 topleft.Orientation = Vector3.new(0, 180, 0)
@@ -59,3 +59,78 @@ bottomright.Color = Color3.new(bottom[3],bottom[3],bottom[3])
 bottomright.Parent = pixelcontainer
 
 -- WOW that was annoying to write even with copy and paste let me try this now
+
+local function update()
+  local top = pixel_layout.top
+  local middle = pixel_layout.middle
+  local bottom = pixel_layout.bottom
+  topleft.Color = Color3.new(top[1],top[1],top[1])
+  topcenter.Color = Color3.new(top[2],top[2],top[2])
+  topright.Color = Color3.new(top[3],top[3],top[3])
+  middleleft.Color = Color3.new(middle[1],middle[1],middle[1])
+  center.Color = Color3.new(middle[2],middle[2],middle[2])
+  middleright.Color = Color3.new(middle[3],middle[3],middle[3])
+  bottomleft.Color = Color3.new(bottom[1],bottom[1],bottom[1])
+  bottomcenter.Color = Color3.new(bottom[2],bottom[2],bottom[2])
+  bottomright.Color = Color3.new(bottom[3],bottom[3],bottom[3])
+end
+
+while true do
+  print("its running")
+  pixel_layout = {
+  top = {1,0,0},
+  middle = {1,0,0},
+  bottom = {0,0,0}
+  }
+  update()
+  task.wait(step_time)
+  pixel_layout = {
+  top = {1,1,0},
+  middle = {0,0,0},
+  bottom = {0,0,0}
+  }
+  update()
+  task.wait(step_time)
+  pixel_layout = {
+  top = {0,1,1},
+  middle = {0,0,0},
+  bottom = {0,0,0}
+  }
+  update()
+  task.wait(step_time)
+  pixel_layout = {
+  top = {0,0,1},
+  middle = {0,0,1},
+  bottom = {0,0,0}
+  }
+  update()
+  task.wait(step_time)
+  pixel_layout = {
+  top = {0,0,0},
+  middle = {0,0,1},
+  bottom = {0,0,1}
+  }
+  update()
+  task.wait(step_time)
+  pixel_layout = {
+  top = {0,0,0},
+  middle = {0,0,0},
+  bottom = {0,1,1}
+  }
+  update()
+  task.wait(step_time)
+  pixel_layout = {
+  top = {0,0,0},
+  middle = {0,0,0},
+  bottom = {1,1,0}
+  }
+  update()
+  task.wait(step_time)
+  pixel_layout = {
+  top = {0,0,0},
+  middle = {1,0,0},
+  bottom = {1,0,0}
+  }
+  update()
+  task.wait(step_time)
+end
