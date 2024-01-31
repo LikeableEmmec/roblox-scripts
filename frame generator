@@ -3,8 +3,8 @@
 -- only two colours, 1 white 0 black
 
 local pixel_layout = {
-  top = {1,1,1}
-  middle = {1,0,1}
+  top = {1,1,1},
+  middle = {1,0,1},
   bottom = {1,1,1}
 }
 
@@ -13,8 +13,8 @@ local middle = pixel_layout.middle
 local bottom = pixel_layout.bottom
 
 local pixelcontainer = Instance.new("Folder")
-folder.Name = "pixelcontainer
-folder.Parent = script
+pixelcontainer.Name = "pixelcontainer"
+pixelcontainer.Parent = script
 local topleft = Instance.new("Part")
 topleft.Name = "topleft"
 topleft.Size = Vector3.new(1,1,1)
@@ -34,21 +34,27 @@ topright.Color = Color3.new(top[3],top[3],top[3])
 topright.Position = Vector3.new(1,6,-15)
 topright.Parent =  pixelcontainer
 local middleleft = topleft:Clone()
+middleleft.Position = Vector3.new(-1, 5, -15)
 middleleft.Color = Color3.new(middle[1],middle[1],middle[1])
 middleleft.Parent = pixelcontainer
 local center = topleft:Clone()
+center.Position = Vector3.new(0, 5, -15)
 center.Color = Color3.new(middle[2],middle[2],middle[2])
 center.Parent = pixelcontainer
 local middleright = topleft:Clone()
+middleright.Position = Vector3.new(1, 5, -15)
 middleright.Color = Color3.new(middle[3],middle[3],middle[3])
 middleright.Parent = pixelcontainer
 local bottomleft = topleft:Clone()
+bottomleft.Position = Vector3.new(-1, 4, -15)
 bottomleft.Color = Color3.new(bottom[1],bottom[1],bottom[1])
 bottomleft.Parent = pixelcontainer
 local bottomcenter = topleft:Clone()
+bottomcenter.Position = Vector3.new(0, 4, -15)
 bottomcenter.Color = Color3.new(bottom[2],bottom[2],bottom[2])
 bottomcenter.Parent = pixelcontainer
 local bottomright = topleft:Clone()
+bottomright.Position = Vector3.new(1, 4, -15)
 bottomright.Color = Color3.new(bottom[3],bottom[3],bottom[3])
 bottomright.Parent = pixelcontainer
 
