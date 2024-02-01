@@ -1,20 +1,55 @@
 local snake_model = Instance.new("Model")
 snake_model.Name = "Snake"
 snake_model.Parent = script
+
 local snake = Instance.new("Part")
 snake.Name = "Primary"
-snake.Anchored = true
-snake.Position = Vector3.new(0, 5, -15)
-snake.BrickColor = Color3.new(0,1,0)
 snake_model.PrimaryPart = snake
+snake.Anchored = true
+snake.Color = Color3.new(0,1,0)
+snake.Position = Vector3.new(0, 5, -15)
+snake.Orientation = Vector3.new(90,90,0)
+snake.Size = Vector3.one
+snake.TopSurface = Enum.SurfaceType.Smooth
+snake.BottomSurface = Enum.SurfaceType.Smooth
 snake.Parent = snake_model
+
+local decal = Instance.new("Decal")
+decal.Texture = "rbxassetid://16198095437"
+decal.Face = Enum.NormalId.Front
+decal.Parent = snake
+
+local movement = Instance.new("RemoteEvent")
+movement.Name = "key"
+movement.Parent = script
+
+movement.OnServerEvent:Connect(function(plr,key)
+	if plr ~= owner then return end
+	if key == "w" then
+		snake.Orientation = Vector3.new(90,90,0)
+	elseif key == "s" then
+		snake.Orientation = Vector3.new(-90, 90, 0)
+	elseif key == "d" then
+		snake.Orientation = Vector3.new(0,180,0)
+	elseif key == "d" then
+		snake.Orientation = Vector3.new(0,0,0)
+	end
+end)
+
+script.Name = owner.Name.."Script"
 
 NLS([[
 local mouse = owner:GetMouse()
 mouse.KeyDown:Connect(function(key)
-  print("down",key)
+	local server = workspace:FindFirstChild(owner.Name.."Script")
+	if server then
+		server.key:FireServer(key)
+	else
+		warn("server not found")
+	end
 end)
-mouse.KeyUp:Connect(function(key)
-  print("up",key)
-end)
-]],script)
+]],owner.PlayerGui)
+
+while task.wait(.2) do
+	snake.CFrame = snake.CFrame * CFrame.new(0,0,-1)
+end
