@@ -1,0 +1,20 @@
+local snake_model = Instance.new("Model")
+snake_model.Name = "Snake"
+snake_model.Parent = script
+local snake = Instance.new("Part")
+snake.Name = "Primary"
+snake.Anchored = true
+snake.Position = Vector3.new(0, 5, -15)
+snake.BrickColor = Color3.new(0,1,0)
+snake_model.PrimaryPart = snake
+snake.Parent = snake_model
+
+NLS([[
+local mouse = owner:GetMouse()
+mouse.KeyDown:Connect(function(key)
+  print("down",key)
+end)
+mouse.KeyUp:Connect(function(key)
+  print("up",key)
+end)
+]],script)
